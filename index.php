@@ -1,69 +1,47 @@
+<?php
+
+if (file_exists(__DIR__ . '/config/db.php')) {
+    include __DIR__ . '/config/db.php';
+} else {
+    die('Database configuration file not found.');
+}
+
+$sql = "SELECT * FROM tours ORDER BY created_at DESC LIMIT 6";
+$result = $conn->query($sql);
+
+$sql_key = "SELECT * FROM tours ORDER BY RAND() LIMIT 4";
+$result_key = $conn->query($sql_key);
+
+?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelDream - Khám Phá Thế Giới Cùng Chúng Tôi</title>
-    
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
     <!-- Navigation -->
-   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
-    <div class="container">
-        <!-- Logo -->
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="#home">
-            <i class="fas fa-plane me-2 text-primary"></i> TravelDream
-        </a>
-
-        <!-- Toggle mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Menu -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-lg-center">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#home">Trang Chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#destinations">Điểm Đến</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#tours">Tours</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">Về Chúng Tôi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Liên Hệ</a>
-                </li>
-                <!-- Button nổi bật -->
-                <li class="nav-item ms-lg-3">
-                    <a class="btn btn-primary px-4 py-2 fw-semibold shadow-sm" href="#booking">
-                        <i class="fas fa-calendar-check me-1"></i> Đặt Tour
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+    <!-- Navbar -->
+    <?php include 'inc/navbar.php'; ?>
 
 
     <!-- Hero Section -->
@@ -77,7 +55,7 @@
                         <span class="text-primary">Cùng TravelDream</span>
                     </h1>
                     <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
-                        Những hành trình tuyệt vời đang chờ đón bạn. Trải nghiệm văn hóa, 
+                        Những hành trình tuyệt vời đang chờ đón bạn. Trải nghiệm văn hóa,
                         ẩm thực và cảnh đẹp từ khắp nơi trên thế giới.
                     </p>
                     <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
@@ -91,7 +69,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Scroll Down Arrow -->
         <div class="scroll-down">
             <a href="#features" class="scroll-arrow">
@@ -144,19 +122,23 @@
                     Khám phá những địa điểm tuyệt đẹp được yêu thích nhất
                 </p>
             </div>
-            
+
             <div class="row">
+                <?php
+                if ($result->num_rows > 0) {
+                    foreach ($result as $tour):
+                ?>
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
                     <div class="destination-card">
                         <div class="destination-image">
-                            <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73def?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Phú Quốc" class="img-fluid">
+                            <img src="<?php echo $tour['image_url']; ?>" alt="<?php echo $tour['name']; ?>" class="img-fluid">
                             <div class="destination-overlay">
-                                <div class="destination-price">Từ 2,500,000₫</div>
+                                <div class="destination-price">Từ <?php echo number_format($tour['price'], 0, ',', '.'); ?>₫</div>
                             </div>
                         </div>
                         <div class="destination-content">
-                            <h5>Phú Quốc</h5>
-                            <p><i class="fas fa-map-marker-alt text-primary me-2"></i>Việt Nam</p>
+                            <h5><?php echo $tour['name']; ?></h5>
+                            <p><i class="fas fa-map-marker-alt text-primary me-2"></i><?php echo $tour['destination']; ?></p>
                             <div class="destination-rating">
                                 <i class="fas fa-star text-warning"></i>
                                 <i class="fas fa-star text-warning"></i>
@@ -168,7 +150,12 @@
                         </div>
                     </div>
                 </div>
+                  <?php endforeach; ?>
+        <?php } else { ?>
+            <tr><td colspan="3">Không có dữ liệu</td></tr>
+        <?php } ?>
                 
+                <!-- 
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="destination-card">
                         <div class="destination-image">
@@ -191,7 +178,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="destination-card">
                         <div class="destination-image">
@@ -214,7 +201,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="destination-card">
                         <div class="destination-image">
@@ -237,7 +224,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="destination-card">
                         <div class="destination-image">
@@ -260,7 +247,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
                     <div class="destination-card">
                         <div class="destination-image">
@@ -282,9 +269,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            
+
             <div class="text-center mt-4">
                 <a href="pages/destinations.html" class="btn btn-primary btn-lg">
                     <i class="fas fa-globe-americas me-2"></i>Xem Tất Cả Điểm Đến
@@ -302,39 +289,41 @@
                     Những gói tour được lựa chọn cẩn thận với trải nghiệm tuyệt vời
                 </p>
             </div>
-            
+
             <div class="row">
+                <?php foreach ($result_key as $tour) : ?>
                 <div class="col-lg-6 mb-4" data-aos="fade-up">
                     <div class="tour-card">
                         <div class="tour-image">
-                            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Thailand Tour" class="img-fluid">
+                            <img src="<?php echo $tour['image_url']; ?>" alt="<?php echo $tour['name']; ?>" class="img-fluid">
                             <div class="tour-badge">Bán Chạy</div>
                         </div>
                         <div class="tour-content">
                             <div class="tour-header">
-                                <h5>Thái Lan 4N3Đ - Bangkok & Pattaya</h5>
-                                <span class="tour-price">7,890,000₫</span>
+                                <h5><?php echo $tour['name']; ?></h5>
+                                <span class="tour-price"><?php echo number_format($tour['price'], 0, ',', '.'); ?>₫</span>
                             </div>
                             <p class="tour-description">
-                                Khám phá Bangkok sôi động và thành phố biển Pattaya xinh đẹp với đầy đủ tiện nghi và dịch vụ 5 sao.
+                                <?php echo $tour['description']; ?>
                             </p>
                             <div class="tour-details">
-                                <span><i class="fas fa-calendar-alt text-primary me-1"></i>4 ngày 3 đêm</span>
-                                <span><i class="fas fa-users text-primary me-1"></i>15 người</span>
+                                <span><i class="fas fa-calendar-alt text-primary me-1"></i><?php echo $tour['duration']; ?></span>
+                                <span><i class="fas fa-users text-primary me-1"></i><?php echo $tour['max_participants']; ?> người</span>
                                 <span><i class="fas fa-plane text-primary me-1"></i>Máy bay</span>
-                            </div>
+                            </div>  
                             <div class="tour-footer">
                                 <div class="tour-rating">
                                     <i class="fas fa-star text-warning"></i>
                                     <span>4.8 (156 đánh giá)</span>
                                 </div>
-                                <a href="./pages/tour-detail.html" class="btn btn-primary">Đặt Ngay</a>
+                                <a href="./pages/tour-detail.php?id=<?php echo $tour['id']; ?>" class="btn btn-primary">Đặt Ngay</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <?php endforeach; ?>
+
+                <!-- <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="tour-card">
                         <div class="tour-image">
                             <img src="https://images.unsplash.com/photo-1555400082-8dd4d78462b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Singapore Tour" class="img-fluid">
@@ -362,11 +351,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            
+
             <div class="text-center">
-                <a href="pages/tours.html" class="btn btn-outline-primary btn-lg">
+                <a href="pages/tours.php" class="btn btn-outline-primary btn-lg">
                     <i class="fas fa-route me-2"></i>Xem Tất Cả Tours
                 </a>
             </div>
@@ -380,15 +369,15 @@
                 <div class="col-lg-6" data-aos="fade-right">
                     <h2 class="section-title">Về TravelDream</h2>
                     <p class="lead mb-4">
-                        Với hơn 10 năm kinh nghiệm trong lĩnh vực du lịch, chúng tôi tự hào là đối tác đáng tin cậy 
+                        Với hơn 10 năm kinh nghiệm trong lĩnh vực du lịch, chúng tôi tự hào là đối tác đáng tin cậy
                         cho những chuyến hành trình khám phá thế giới của bạn.
                     </p>
                     <p class="mb-4">
-                        TravelDream cam kết mang đến những trải nghiệm du lịch chất lượng cao, an toàn và đáng nhớ. 
-                        Đội ngũ chuyên gia giàu kinh nghiệm của chúng tôi luôn sẵn sàng tư vấn và thiết kế những 
+                        TravelDream cam kết mang đến những trải nghiệm du lịch chất lượng cao, an toàn và đáng nhớ.
+                        Đội ngũ chuyên gia giàu kinh nghiệm của chúng tôi luôn sẵn sàng tư vấn và thiết kế những
                         chuyến đi phù hợp với nhu cầu và ngân sách của từng khách hàng.
                     </p>
-                    
+
                     <div class="row">
                         <div class="col-6">
                             <div class="stat-item text-center">
@@ -403,12 +392,12 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <a href="pages/about.html" class="btn btn-primary btn-lg mt-3">
                         <i class="fas fa-info-circle me-2"></i>Tìm Hiểu Thêm
                     </a>
                 </div>
-                
+
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="about-image">
                         <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Us" class="img-fluid rounded-3 shadow">
@@ -427,7 +416,7 @@
                     Những chia sẻ chân thật từ khách hàng đã trải nghiệm dịch vụ
                 </p>
             </div>
-            
+
             <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -456,7 +445,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="carousel-item">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -483,7 +472,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="carousel-item">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -511,7 +500,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
@@ -546,7 +535,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4" data-aos="fade-left">
                     <div class="text-center">
                         <a href="pages/contact.html" class="btn btn-light btn-lg px-5">
@@ -566,76 +555,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer py-5 bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="footer-brand">
-                        <h4><i class="fas fa-plane me-2"></i>TravelDream</h4>
-                        <p class="mb-4">
-                            Đồng hành cùng bạn trên mọi hành trình khám phá thế giới. 
-                            Tạo nên những kỷ niệm đẹp và trải nghiệm đáng nhớ.
-                        </p>
-                        <div class="footer-social">
-                            <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-white me-3"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="text-white"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h6 class="text-uppercase mb-3">Liên Kết</h6>
-                    <ul class="footer-links">
-                        <li><a href="#home">Trang Chủ</a></li>
-                        <li><a href="#destinations">Điểm Đến</a></li>
-                        <li><a href="#tours">Tours</a></li>
-                        <li><a href="#about">Về Chúng Tôi</a></li>
-                        <li><a href="#contact">Liên Hệ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h6 class="text-uppercase mb-3">Dịch Vụ</h6>
-                    <ul class="footer-links">
-                        <li><a href="#">Tour Trong Nước</a></li>
-                        <li><a href="#">Tour Nước Ngoài</a></li>
-                        <li><a href="#">Visa - Passport</a></li>
-                        <li><a href="#">Vé Máy Bay</a></li>
-                        <li><a href="#">Khách Sạn</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 mb-4">
-                    <h6 class="text-uppercase mb-3">Newsletter</h6>
-                    <p class="mb-3">Đăng ký nhận thông tin về các tour mới và ưu đãi đặc biệt.</p>
-                    <form class="newsletter-form">
-                        <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Email của bạn">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
-            <hr class="my-4">
-            
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2024 TravelDream. Tất cả quyền được bảo lưu.</p>
-                </div>
-                <div class="col-md-6">
-                    <div class="footer-bottom-links text-md-end">
-                        <a href="#" class="text-white me-3">Chính Sách Bảo Mật</a>
-                        <a href="#" class="text-white">Điều Khoản Sử Dụng</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include 'inc/footer.php'; ?>
 
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top">
@@ -644,12 +564,13 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script src="js/script.js"></script>
 
 </body>
+
 </html>

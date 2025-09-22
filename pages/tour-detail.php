@@ -1,66 +1,48 @@
+<?php $id = isset($_GET['id']) ? intval($_GET['id']) : 0; 
+    require_once '../config/db.php';
+
+    $tour = null;
+    if ($id > 0) {
+        $stmt = $conn->prepare("SELECT * FROM tours WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $tour = $result->fetch_assoc();
+        $stmt->close();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phú Quốc 3N2Đ - Chi Tiết Tour - TravelDream</title>
-    
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Lightbox CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">
-                <i class="fas fa-plane"></i>
-                TravelDream
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Trang Chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html#destinations">Điểm Đến</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="tours.html">Tours</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">Về Chúng Tôi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Liên Hệ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary px-3 ms-2" href="booking.html">Đặt Tour</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include '../inc/navbar.php'; ?>
 
     <!-- Tour Header -->
     <section class="tour-detail-header">
@@ -68,12 +50,12 @@
             <div class="row g-0">
                 <div class="col-lg-8">
                     <div class="main-image-container">
-                        <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                             alt="Phú Quốc" class="main-tour-image">
+                        <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                            alt="Phú Quốc" class="main-tour-image">
                         <div class="image-overlay">
                             <div class="tour-badges">
                                 <span class="badge bg-danger">🔥 Bán Chạy</span>
-                                <span class="badge bg-success">⭐ 4.8/5</span>
+                                <span class="badge bg-success">⭐<?php echo $tour['rating']; ?>/5</span>
                             </div>
                         </div>
                     </div>
@@ -81,12 +63,12 @@
                 <div class="col-lg-4">
                     <div class="tour-gallery">
                         <div class="gallery-item">
-                            <a href="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" data-lightbox="tour-gallery">
-                                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Cáp treo Phú Quốc">
+                            <a href="<?php echo $tour['image_url']; ?>" data-lightbox="tour-gallery">
+                                <img src="<?php echo $tour['image_url']; ?>" alt="Cáp treo Phú Quốc">
                             </a>
                         </div>
                         <div class="gallery-item">
-                            <a href="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" data-lightbox="tour-gallery">
+                            <a href="<?php echo $tour['image_url']; ?>" data-lightbox="tour-gallery">
                                 <img src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Biển Phú Quốc">
                             </a>
                         </div>
@@ -116,33 +98,33 @@
                     <div class="tour-info-header mb-4" data-aos="fade-up">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+                                <li class="breadcrumb-item"><a href="../index.php">Trang Chủ</a></li>
                                 <li class="breadcrumb-item"><a href="tours.html">Tours</a></li>
-                                <li class="breadcrumb-item active">Phú Quốc 3N2Đ</li>
+                                <li class="breadcrumb-item active"><?php echo $tour['name']; ?></li>
                             </ol>
                         </nav>
-                        
-                        <h1 class="tour-title">Phú Quốc 3N2Đ - Đảo Ngọc Kiên Giang</h1>
-                        
+
+                        <h1 class="tour-title"><?php echo $tour['name']; ?></h1>
+
                         <div class="tour-meta-info">
                             <div class="meta-item">
                                 <i class="fas fa-map-marker-alt text-primary"></i>
-                                <span>Kiên Giang, Việt Nam</span>
+                                <span><?php echo $tour['destination']; ?></span>
                             </div>
                             <div class="meta-item">
                                 <i class="fas fa-calendar-alt text-primary"></i>
-                                <span>3 ngày 2 đêm</span>
+                                <span><?php echo $tour['duration']; ?></span>
                             </div>
                             <div class="meta-item">
                                 <i class="fas fa-users text-primary"></i>
-                                <span>Tối đa 25 người</span>
+                                <span><?php echo $tour['max_participants']; ?> người</span>
                             </div>
                             <div class="meta-item">
                                 <i class="fas fa-star text-warning"></i>
-                                <span>4.8/5 (124 đánh giá)</span>
+                                <span><?php echo $tour['rating']; ?>/5 (124 đánh giá)</span>
                             </div>
                         </div>
-                        
+
                         <div class="tour-actions">
                             <button class="btn btn-outline-primary btn-sm me-2">
                                 <i class="fas fa-heart"></i> Yêu thích
@@ -157,17 +139,17 @@
                     <div class="tour-description mb-5" data-aos="fade-up" data-aos-delay="100">
                         <h3>Mô tả tour</h3>
                         <p class="lead">
-                            Khám phá vẻ đẹp thiên nhiên hoang sơ của đảo Phú Quốc - hòn đảo lớn nhất Việt Nam với những bãi biển trong xanh, 
+                            Khám phá vẻ đẹp thiên nhiên hoang sơ của đảo Phú Quốc - hòn đảo lớn nhất Việt Nam với những bãi biển trong xanh,
                             rừng nguyên sinh và nền ẩm thực hải sản tươi ngon độc đáo.
                         </p>
                         <p>
-                            Chuyến đi 3 ngày 2 đêm sẽ đưa bạn trải nghiệm những điểm đến không thể bỏ qua như cáp treo Hòn Thơm - 
-                            cáp treo vượt biển dài nhất thế giới, Safari Phú Quốc với hơn 3000 cá thể động vật quý hiếm, 
+                            Chuyến đi 3 ngày 2 đêm sẽ đưa bạn trải nghiệm những điểm đến không thể bỏ qua như cáp treo Hòn Thơm -
+                            cáp treo vượt biển dài nhất thế giới, Safari Phú Quốc với hơn 3000 cá thể động vật quý hiếm,
                             chợ đêm Phú Quốc với đặc sản nướng hải sản và không khí sôi động về đêm.
                         </p>
                         <p>
-                            Điểm nhấn của tour là những bãi biển tuyệt đẹp như bãi Sao, bãi Kem với cát trắng mịn màng, 
-                            nước biển trong vắt cùng hoàng hôn lãng mạn tại bãi Dinh Cậu. Đây sẽ là chuyến đi đáng nhớ 
+                            Điểm nhấn của tour là những bãi biển tuyệt đẹp như bãi Sao, bãi Kem với cát trắng mịn màng,
+                            nước biển trong vắt cùng hoàng hôn lãng mạn tại bãi Dinh Cậu. Đây sẽ là chuyến đi đáng nhớ
                             cho những ai yêu thích thiên nhiên và muốn tìm hiểu văn hóa địa phương.
                         </p>
                     </div>
@@ -198,7 +180,7 @@
                     <!-- Itinerary -->
                     <div class="tour-itinerary mb-5" data-aos="fade-up" data-aos-delay="300">
                         <h3>Lịch trình tour</h3>
-                        
+
                         <div class="itinerary-timeline">
                             <div class="timeline-item">
                                 <div class="timeline-marker">
@@ -216,7 +198,7 @@
                                     <p><strong>19:30</strong> - Ăn tối tại chợ đêm Phú Quốc</p>
                                 </div>
                             </div>
-                            
+
                             <div class="timeline-item">
                                 <div class="timeline-marker">
                                     <div class="timeline-day">2</div>
@@ -233,7 +215,7 @@
                                     <p><strong>20:00</strong> - Tự do khám phá đêm Phú Quốc</p>
                                 </div>
                             </div>
-                            
+
                             <div class="timeline-item">
                                 <div class="timeline-marker">
                                     <div class="timeline-day">3</div>
@@ -284,7 +266,7 @@
                     <!-- Reviews -->
                     <div class="tour-reviews" data-aos="fade-up" data-aos-delay="500">
                         <h3>Đánh giá từ khách hàng</h3>
-                        
+
                         <div class="reviews-summary mb-4">
                             <div class="row align-items-center">
                                 <div class="col-md-4 text-center">
@@ -341,7 +323,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="reviews-list">
                             <div class="review-item">
                                 <div class="reviewer-info">
@@ -359,11 +341,11 @@
                                     </div>
                                 </div>
                                 <p class="review-content">
-                                    Tour rất tuyệt vời! Lịch trình hợp lý, hướng dẫn viên nhiệt tình. Đặc biệt ấn tượng với cáp treo Hòn Thơm 
+                                    Tour rất tuyệt vời! Lịch trình hợp lý, hướng dẫn viên nhiệt tình. Đặc biệt ấn tượng với cáp treo Hòn Thơm
                                     và bãi Sao đẹp như tranh vẽ. Gia đình tôi rất hài lòng với chuyến đi này.
                                 </p>
                             </div>
-                            
+
                             <div class="review-item">
                                 <div class="reviewer-info">
                                     <img src="https://ui-avatars.com/api/?name=Tran+Thi+B&background=A23B72&color=fff" alt="Avatar" class="reviewer-avatar">
@@ -380,11 +362,11 @@
                                     </div>
                                 </div>
                                 <p class="review-content">
-                                    Phú Quốc thật sự rất đẹp! Hải sản tươi ngon, bãi biển trong vắt. Duy nhất là thời tiết hơi nóng 
+                                    Phú Quốc thật sự rất đẹp! Hải sản tươi ngon, bãi biển trong vắt. Duy nhất là thời tiết hơi nóng
                                     nhưng nhìn chung rất đáng để trải nghiệm. Sẽ quay lại lần nữa!
                                 </p>
                             </div>
-                            
+
                             <div class="review-item">
                                 <div class="reviewer-info">
                                     <img src="https://ui-avatars.com/api/?name=Le+Van+C&background=F18F01&color=fff" alt="Avatar" class="reviewer-avatar">
@@ -401,12 +383,12 @@
                                     </div>
                                 </div>
                                 <p class="review-content">
-                                    Dịch vụ chuyên nghiệp, khách sạn sạch sẽ. Safari Phú Quốc rất thú vị với nhiều loài động vật. 
+                                    Dịch vụ chuyên nghiệp, khách sạn sạch sẽ. Safari Phú Quốc rất thú vị với nhiều loài động vật.
                                     Chợ đêm Phú Quốc sôi động, đồ ăn đa dạng. Recommend cho mọi người!
                                 </p>
                             </div>
                         </div>
-                        
+
                         <div class="text-center mt-4">
                             <button class="btn btn-outline-primary">Xem thêm đánh giá</button>
                         </div>
@@ -420,22 +402,22 @@
                             <div class="booking-header">
                                 <div class="tour-price">
                                     <span class="price-label">Từ</span>
-                                    <span class="price-amount">2,500,000₫</span>
+                                    <span class="price-amount"><?php echo number_format($tour['price']); ?>₫</span>
                                     <span class="price-person">/người</span>
                                 </div>
                                 <div class="tour-rating">
                                     <i class="fas fa-star text-warning"></i>
-                                    <span>4.8</span>
+                                    <span><?php echo $tour['rating']; ?></span>
                                     <small>(124 đánh giá)</small>
                                 </div>
                             </div>
-                            
+
                             <form class="booking-form">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Ngày khởi hành</label>
                                     <input type="date" class="form-control" id="departureDate" required>
                                 </div>
-                                
+
                                 <div class="form-group mb-3">
                                     <label class="form-label">Số lượng khách</label>
                                     <div class="guest-selector">
@@ -447,7 +429,7 @@
                                                 <button type="button" class="btn-quantity" onclick="changeQuantity('adults', 1)">+</button>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="guest-type">
                                             <span>Trẻ em (2-11 tuổi)</span>
                                             <div class="quantity-control">
@@ -456,29 +438,29 @@
                                                 <button type="button" class="btn-quantity" onclick="changeQuantity('children', 1)">+</button>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="guest-type">
                                             <span>Em bé (< 2 tuổi)</span>
-                                            <div class="quantity-control">
-                                                <button type="button" class="btn-quantity" onclick="changeQuantity('infants', -1)">-</button>
-                                                <span class="quantity" id="infants">0</span>
-                                                <button type="button" class="btn-quantity" onclick="changeQuantity('infants', 1)">+</button>
-                                            </div>
+                                                    <div class="quantity-control">
+                                                        <button type="button" class="btn-quantity" onclick="changeQuantity('infants', -1)">-</button>
+                                                        <span class="quantity" id="infants">0</span>
+                                                        <button type="button" class="btn-quantity" onclick="changeQuantity('infants', 1)">+</button>
+                                                    </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="price-breakdown">
                                     <div class="price-row">
-                                        <span>Người lớn (<span id="adultCount">2</span> × 2,500,000₫)</span>
-                                        <span id="adultTotal">5,000,000₫</span>
+                                        <span>Người lớn (<span id="adultCount">2</span> ×  <?php echo number_format($tour['price']); ?>₫)</span>
+                                        <span id="adultTotal"><?php echo number_format($tour['price'] * 2); ?>₫</span>
                                     </div>
                                     <div class="price-row">
-                                        <span>Trẻ em (<span id="childCount">0</span> × 1,875,000₫)</span>
+                                        <span>Trẻ em (<span id="childCount">0</span> × <?php echo number_format($tour['price'] * 0.75); ?>₫)</span>
                                         <span id="childTotal">0₫</span>
                                     </div>
                                     <div class="price-row">
-                                        <span>Em bé (<span id="infantCount">0</span> × 500,000₫)</span>
+                                        <span>Em bé (<span id="infantCount">0</span> × <?php echo number_format($tour['price'] * 0.1); ?>₫)</span>
                                         <span id="infantTotal">0₫</span>
                                     </div>
                                     <hr>
@@ -487,16 +469,16 @@
                                         <span><strong id="grandTotal">5,000,000₫</strong></span>
                                     </div>
                                 </div>
-                                
+
                                 <button type="button" class="btn btn-primary btn-lg w-100 mt-3" onclick="proceedToBooking()">
                                     Đặt Tour Ngay
                                 </button>
-                                
+
                                 <button type="button" class="btn btn-outline-primary w-100 mt-2">
                                     <i class="fas fa-phone me-2"></i>Liên hệ tư vấn
                                 </button>
                             </form>
-                            
+
                             <div class="booking-features">
                                 <div class="feature-item">
                                     <i class="fas fa-credit-card text-primary"></i>
@@ -512,7 +494,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Contact Info -->
                         <div class="contact-card mt-4">
                             <h5>Cần hỗ trợ?</h5>
@@ -572,7 +554,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="tour-card h-100">
                         <div class="tour-image">
@@ -596,7 +578,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="tour-card h-100">
                         <div class="tour-image">
@@ -626,58 +608,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer py-5 bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="footer-brand">
-                        <h4><i class="fas fa-plane me-2"></i>TravelDream</h4>
-                        <p class="mb-4">
-                            Đồng hành cùng bạn trên mọi hành trình khám phá thế giới. 
-                            Tạo nên những kỷ niệm đẹp và trải nghiệm đáng nhớ.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h6 class="text-uppercase mb-3">Liên Kết</h6>
-                    <ul class="footer-links">
-                        <li><a href="../index.html">Trang Chủ</a></li>
-                        <li><a href="tours.html">Tours</a></li>
-                        <li><a href="about.html">Về Chúng Tôi</a></li>
-                        <li><a href="contact.html">Liên Hệ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h6 class="text-uppercase mb-3">Dịch Vụ</h6>
-                    <ul class="footer-links">
-                        <li><a href="#">Tour Trong Nước</a></li>
-                        <li><a href="#">Tour Nước Ngoài</a></li>
-                        <li><a href="#">Visa - Passport</a></li>
-                        <li><a href="#">Vé Máy Bay</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 mb-4">
-                    <h6 class="text-uppercase mb-3">Liên Hệ</h6>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt me-2"></i>123 Nguyễn Huệ, Quận 1, TP.HCM</p>
-                        <p><i class="fas fa-phone me-2"></i>1900 2024</p>
-                        <p><i class="fas fa-envelope me-2"></i>info@traveldream.vn</p>
-                    </div>
-                </div>
-            </div>
-            
-            <hr class="my-4">
-            
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2024 TravelDream. Tất cả quyền được bảo lưu.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include '../inc/footer.php'; ?>
 
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top">
@@ -686,13 +617,13 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <!-- Lightbox JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script src="../js/script.js"></script>
 
@@ -705,19 +636,19 @@
 
         // Price calculation
         const prices = {
-            adult: 2500000,
-            child: 1875000, // 75% of adult price
-            infant: 500000   // Fixed price for infants
+            adult: <?php echo $tour['price']; ?>, // 2,500,000 VND
+            child: <?php echo $tour['price'] * 0.75; ?>, // 75% of adult price
+            infant: <?php echo $tour['infant_price']; ?> // Fixed price for infants
         };
 
         function changeQuantity(type, change) {
             const element = document.getElementById(type);
             let current = parseInt(element.textContent);
             let newValue = current + change;
-            
+
             if (newValue < 0) newValue = 0;
             if (type === 'adults' && newValue < 1) newValue = 1; // At least 1 adult required
-            
+
             element.textContent = newValue;
             updatePriceCalculation();
         }
@@ -736,7 +667,7 @@
             document.getElementById('adultCount').textContent = adults;
             document.getElementById('childCount').textContent = children;
             document.getElementById('infantCount').textContent = infants;
-            
+
             document.getElementById('adultTotal').textContent = adultTotal.toLocaleString('vi-VN') + '₫';
             document.getElementById('childTotal').textContent = childTotal.toLocaleString('vi-VN') + '₫';
             document.getElementById('infantTotal').textContent = infantTotal.toLocaleString('vi-VN') + '₫';
@@ -748,22 +679,22 @@
             const adults = parseInt(document.getElementById('adults').textContent);
             const children = parseInt(document.getElementById('children').textContent);
             const infants = parseInt(document.getElementById('infants').textContent);
-            
+
             if (!departureDate) {
                 alert('Vui lòng chọn ngày khởi hành');
                 return;
             }
-            
+
             // Create booking data
             const bookingData = {
-                tourName: 'Phú Quốc 3N2Đ - Đảo Ngọc Kiên Giang',
+                tourName: <?php echo json_encode($tour['name']); ?>,
                 departureDate: departureDate,
                 adults: adults,
                 children: children,
                 infants: infants,
                 totalAmount: parseInt(document.getElementById('grandTotal').textContent.replace(/[^\d]/g, ''))
             };
-            
+
             // Store in sessionStorage and redirect to booking page
             sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
             window.location.href = 'booking.html';
@@ -809,7 +740,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(0,0,0,0.3) 0%, transparent 100%);
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
         }
 
         .tour-badges {
@@ -955,18 +886,21 @@
             color: #6c757d;
         }
 
-        .included-list, .excluded-list {
+        .included-list,
+        .excluded-list {
             list-style: none;
             padding: 0;
         }
 
-        .included-list li, .excluded-list li {
+        .included-list li,
+        .excluded-list li {
             padding: 6px 0;
             display: flex;
             align-items: center;
         }
 
-        .included-list i, .excluded-list i {
+        .included-list i,
+        .excluded-list i {
             margin-right: 10px;
             width: 16px;
         }
@@ -980,7 +914,7 @@
             background: white;
             border-radius: 16px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border: 1px solid #e9ecef;
         }
 
@@ -1093,7 +1027,7 @@
             background: white;
             border-radius: 16px;
             padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .contact-item {
@@ -1169,7 +1103,7 @@
             padding: 1.5rem;
             border-radius: 12px;
             margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .reviewer-info {
@@ -1203,41 +1137,41 @@
             .tour-title {
                 font-size: 1.8rem;
             }
-            
+
             .tour-meta-info {
                 flex-direction: column;
                 gap: 0.5rem;
             }
-            
+
             .main-image-container,
             .tour-gallery {
                 height: 250px;
             }
-            
+
             .booking-sidebar {
                 position: static;
                 margin-top: 2rem;
             }
-            
+
             .itinerary-timeline {
                 padding-left: 20px;
             }
-            
+
             .timeline-marker {
                 left: -20px;
             }
-            
+
             .timeline-day {
                 width: 30px;
                 height: 30px;
                 font-size: 0.9rem;
             }
-            
+
             .timeline-item:not(:last-child)::before {
                 left: -6px;
                 top: 30px;
             }
-            
+
             .rating-breakdown {
                 padding-left: 0;
                 margin-top: 1rem;
@@ -1246,4 +1180,5 @@
     </style>
 
 </body>
+
 </html>
