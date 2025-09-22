@@ -1,63 +1,38 @@
+<?php
+require_once '../config/db.php';
+
+$sql = "SELECT * FROM tours";
+$result = $conn->query($sql);
+
+?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tours & Packages - TravelDream</title>
-    
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">
-                <i class="fas fa-plane"></i>
-                TravelDream
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Trang Chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html#destinations">Điểm Đến</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="tours.html">Tours</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">Về Chúng Tôi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Liên Hệ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary px-3 ms-2" href="#booking">Đặt Tour</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include '../inc/navbar.php'; ?>
 
     <!-- Page Header -->
     <section class="page-header">
@@ -159,103 +134,12 @@
 
             <!-- Tours Grid -->
             <div class="row" id="toursContainer">
-                <!-- Tour 1 -->
-                <div class="col-lg-6 col-xl-4 mb-4">
-  <div class="card shadow-sm h-100 border-0">
-    <!-- Ảnh -->
-    <div class="position-relative">
-      <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-           class="card-img-top" alt="Phú Quốc Tour">
-      <span class="badge bg-danger position-absolute top-0 start-0 m-3 px-3 py-2">🔥 Bán Chạy</span>
-      <div class="position-absolute top-50 start-50 translate-middle d-none d-md-flex">
-        <a href="#" class="btn btn-light btn-sm">Xem Chi Tiết</a>
-      </div>
-    </div>
-
-    <!-- Nội dung -->
-    <div class="card-body d-flex flex-column">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <h5 class="card-title mb-0 fs-6">Phú Quốc 3N2Đ - Đảo Ngọc Kiên Giang</h5>
-        <span class="text-warning small">
-          <i class="fas fa-star"></i> 4.8
-        </span>
-      </div>
-
-      <p class="text-muted small mb-2">
-        <i class="fas fa-map-marker-alt text-primary me-1"></i> Việt Nam
-        <span class="ms-3"><i class="fas fa-calendar-alt text-primary me-1"></i> 3 ngày 2 đêm</span>
-      </p>
-
-      <p class="card-text small flex-grow-1">
-        Khám phá vẻ đẹp thiên nhiên hoang sơ của đảo Phú Quốc với bãi biển trong xanh và hải sản tươi ngon.
-      </p>
-
-      <div class="mb-3">
-        <span class="badge bg-light text-dark me-1">Cáp treo</span>
-        <span class="badge bg-light text-dark me-1">Safari</span>
-        <span class="badge bg-light text-dark">Chợ đêm</span>
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center mt-auto">
-        <div>
-          <small class="text-muted">Từ</small><br>
-          <span class="fw-bold text-danger fs-6">2,500,000₫</span><span class="text-muted small"> /người</span>
-        </div>
-        <a href="#" class="btn btn-primary btn-sm px-3">Đặt Ngay</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-                <!-- Tour 2 -->
-                <div class="col-lg-6 col-xl-4 mb-4 tour-item" data-destination="thailand" data-duration="4" data-price="7.89">
-                    <div class="tour-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="tour-image">
-                            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Thailand Tour" class="img-fluid">
-                            <div class="tour-badge sale">Giảm 15%</div>
-                            <div class="tour-overlay">
-                                <a href="#" class="btn btn-light tour-view-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-header">
-                                <h5>Thái Lan 4N3Đ - Bangkok & Pattaya</h5>
-                                <div class="tour-rating">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <span>4.9</span>
-                                </div>
-                            </div>
-                            <div class="tour-meta">
-                                <span><i class="fas fa-map-marker-alt text-primary me-1"></i>Thái Lan</span>
-                                <span><i class="fas fa-calendar-alt text-primary me-1"></i>4 ngày 3 đêm</span>
-                            </div>
-                            <p class="tour-description">
-                                Trải nghiệm Bangkok sôi động và thành phố biển Pattaya xinh đẹp với đầy đủ tiện nghi 5 sao.
-                            </p>
-                            <div class="tour-highlights">
-                                <span class="highlight-tag">Chùa Vàng</span>
-                                <span class="highlight-tag">Floating Market</span>
-                                <span class="highlight-tag">Show Cabaret</span>
-                            </div>
-                            <div class="tour-footer">
-                                <div class="tour-price">
-                                    <span class="price-original">9,290,000₫</span>
-                                    <span class="price-from">Từ</span>
-                                    <span class="price-amount">7,890,000₫</span>
-                                    <span class="price-person">/người</span>
-                                </div>
-                                <button class="btn btn-primary btn-book">Đặt Ngay</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+               <?php foreach ($result as $tour): ?>
                 <!-- Tour 3 -->
                 <div class="col-lg-6 col-xl-4 mb-4 tour-item" data-destination="singapore" data-duration="3" data-price="9.5">
                     <div class="tour-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="tour-image">
-                            <img src="https://images.unsplash.com/photo-1555400082-8dd4d78462b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Singapore Tour" class="img-fluid">
+                            <img src="<?php echo $tour['image_url']; ?>" alt="<?php echo $tour['name']; ?>" class="img-fluid">
                             <div class="tour-badge new">Mới</div>
                             <div class="tour-overlay">
                                 <a href="#" class="btn btn-light tour-view-btn">Xem Chi Tiết</a>
@@ -263,18 +147,18 @@
                         </div>
                         <div class="tour-content">
                             <div class="tour-header">
-                                <h5>Singapore 3N2Đ - Đảo Quốc Sư Tử</h5>
+                                <h5><?php echo $tour['name']; ?></h5>
                                 <div class="tour-rating">
                                     <i class="fas fa-star text-warning"></i>
-                                    <span>4.7</span>
+                                    <span><?php echo $tour['rating']; ?></span>
                                 </div>
                             </div>
                             <div class="tour-meta">
-                                <span><i class="fas fa-map-marker-alt text-primary me-1"></i>Singapore</span>
-                                <span><i class="fas fa-calendar-alt text-primary me-1"></i>3 ngày 2 đêm</span>
+                                <span><i class="fas fa-map-marker-alt text-primary me-1"></i><?php echo $tour['destination']; ?></span>
+                                <span><i class="fas fa-calendar-alt text-primary me-1"></i><?php echo $tour['duration']; ?></span>
                             </div>
                             <p class="tour-description">
-                                Khám phá Singapore hiện đại với Gardens by the Bay, Universal Studios và Marina Bay Sands.
+                                <?php echo $tour['description']; ?>
                             </p>
                             <div class="tour-highlights">
                                 <span class="highlight-tag">Universal Studios</span>
@@ -284,17 +168,17 @@
                             <div class="tour-footer">
                                 <div class="tour-price">
                                     <span class="price-from">Từ</span>
-                                    <span class="price-amount">9,500,000₫</span>
+                                    <span class="price-amount"><?php echo number_format($tour['price'], 0, ',', '.'); ?>₫</span>
                                     <span class="price-person">/người</span>
                                 </div>
-                                <button class="btn btn-primary btn-book">Đặt Ngay</button>
+                                <button href="./pages/tour-detail.php?id=<?php echo $tour['id']; ?>" class="btn btn-primary btn-book">Đặt Ngay</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <?php endforeach; ?>
                 <!-- Tour 4 -->
-                <div class="col-lg-6 col-xl-4 mb-4 tour-item" data-destination="japan" data-duration="7" data-price="18.9">
+                <!-- <div class="col-lg-6 col-xl-4 mb-4 tour-item" data-destination="japan" data-duration="7" data-price="18.9">
                     <div class="tour-card" data-aos="fade-up">
                         <div class="tour-image">
                             <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Japan Tour" class="img-fluid">
@@ -333,10 +217,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Tour 5 -->
-                <div class="col-lg-6 col-xl-4 mb-4 tour-item" data-destination="korea" data-duration="5" data-price="12.5">
+                <!-- <div class="col-lg-6 col-xl-4 mb-4 tour-item" data-destination="korea" data-duration="5" data-price="12.5">
                     <div class="tour-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="tour-image">
                             <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Korea Tour" class="img-fluid">
@@ -375,10 +259,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Tour 6 -->
-                <div class="col-lg-6 col-xl-4 mb-4 tour-item" data-destination="europe" data-duration="10" data-price="45">
+                <!-- <div class="col-lg-6 col-xl-4 mb-4 tour-item" data-destination="europe" data-duration="10" data-price="45">
                     <div class="tour-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="tour-image">
                             <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Europe Tour" class="img-fluid">
@@ -417,7 +301,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Additional tours can be added here -->
             </div>
@@ -441,7 +325,7 @@
                         Nhận thông báo về các tour mới, ưu đãi đặc biệt và những điểm đến thú vị ngay trong email của bạn.
                     </p>
                 </div>
-                
+
                 <div class="col-lg-4" data-aos="fade-left">
                     <form class="newsletter-form">
                         <div class="input-group">
@@ -457,73 +341,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer py-5 bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="footer-brand">
-                        <h4><i class="fas fa-plane me-2"></i>TravelDream</h4>
-                        <p class="mb-4">
-                            Đồng hành cùng bạn trên mọi hành trình khám phá thế giới. 
-                            Tạo nên những kỷ niệm đẹp và trải nghiệm đáng nhớ.
-                        </p>
-                        <div class="footer-social">
-                            <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-white me-3"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="text-white"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h6 class="text-uppercase mb-3">Liên Kết</h6>
-                    <ul class="footer-links">
-                        <li><a href="../index.html">Trang Chủ</a></li>
-                        <li><a href="../index.html#destinations">Điểm Đến</a></li>
-                        <li><a href="tours.html">Tours</a></li>
-                        <li><a href="about.html">Về Chúng Tôi</a></li>
-                        <li><a href="contact.html">Liên Hệ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h6 class="text-uppercase mb-3">Dịch Vụ</h6>
-                    <ul class="footer-links">
-                        <li><a href="#">Tour Trong Nước</a></li>
-                        <li><a href="#">Tour Nước Ngoài</a></li>
-                        <li><a href="#">Visa - Passport</a></li>
-                        <li><a href="#">Vé Máy Bay</a></li>
-                        <li><a href="#">Khách Sạn</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 mb-4">
-                    <h6 class="text-uppercase mb-3">Liên Hệ</h6>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt me-2"></i>123 Nguyễn Huệ, Quận 1, TP.HCM</p>
-                        <p><i class="fas fa-phone me-2"></i>1900 2024</p>
-                        <p><i class="fas fa-envelope me-2"></i>info@traveldream.vn</p>
-                    </div>
-                </div>
-            </div>
-            
-            <hr class="my-4">
-            
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2024 TravelDream. Tất cả quyền được bảo lưu.</p>
-                </div>
-                <div class="col-md-6">
-                    <div class="footer-bottom-links text-md-end">
-                        <a href="#" class="text-white me-3">Chính Sách Bảo Mật</a>
-                        <a href="#" class="text-white">Điều Khoản Sử Dụng</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    <?php include '../inc/footer.php'; ?>
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top">
         <i class="fas fa-chevron-up"></i>
@@ -531,10 +349,10 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script src="../js/script.js"></script>
 
@@ -546,33 +364,33 @@
             const duration = document.getElementById('durationFilter').value;
             const price = document.getElementById('priceFilter').value;
             const search = document.getElementById('searchInput').value.toLowerCase();
-            
+
             const tourItems = document.querySelectorAll('.tour-item');
             let visibleCount = 0;
-            
+
             tourItems.forEach(item => {
                 let show = true;
-                
+
                 // Filter by destination
                 if (destination && item.dataset.destination !== destination) {
                     show = false;
                 }
-                
+
                 // Filter by duration
                 if (duration && !matchesDuration(item.dataset.duration, duration)) {
                     show = false;
                 }
-                
+
                 // Filter by price
                 if (price && !matchesPrice(item.dataset.price, price)) {
                     show = false;
                 }
-                
+
                 // Filter by search term
                 if (search && !item.querySelector('h5').textContent.toLowerCase().includes(search)) {
                     show = false;
                 }
-                
+
                 if (show) {
                     item.style.display = 'block';
                     visibleCount++;
@@ -580,40 +398,50 @@
                     item.style.display = 'none';
                 }
             });
-            
+
             document.getElementById('tourCount').textContent = visibleCount;
         }
-        
+
         function matchesDuration(tourDuration, filter) {
             const duration = parseInt(tourDuration);
-            switch(filter) {
-                case '1-3': return duration >= 1 && duration <= 3;
-                case '4-7': return duration >= 4 && duration <= 7;
-                case '8-14': return duration >= 8 && duration <= 14;
-                case '15+': return duration >= 15;
-                default: return true;
+            switch (filter) {
+                case '1-3':
+                    return duration >= 1 && duration <= 3;
+                case '4-7':
+                    return duration >= 4 && duration <= 7;
+                case '8-14':
+                    return duration >= 8 && duration <= 14;
+                case '15+':
+                    return duration >= 15;
+                default:
+                    return true;
             }
         }
-        
+
         function matchesPrice(tourPrice, filter) {
             const price = parseFloat(tourPrice);
-            switch(filter) {
-                case '0-5': return price < 5;
-                case '5-10': return price >= 5 && price <= 10;
-                case '10-20': return price >= 10 && price <= 20;
-                case '20+': return price >= 20;
-                default: return true;
+            switch (filter) {
+                case '0-5':
+                    return price < 5;
+                case '5-10':
+                    return price >= 5 && price <= 10;
+                case '10-20':
+                    return price >= 10 && price <= 20;
+                case '20+':
+                    return price >= 20;
+                default:
+                    return true;
             }
         }
-        
+
         // Sort functionality
         document.getElementById('sortBy').addEventListener('change', function() {
             const sortValue = this.value;
             const container = document.getElementById('toursContainer');
             const items = Array.from(container.children);
-            
+
             items.sort((a, b) => {
-                switch(sortValue) {
+                switch (sortValue) {
                     case 'price-low':
                         return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
                     case 'price-high':
@@ -628,43 +456,43 @@
                         return 0;
                 }
             });
-            
+
             items.forEach(item => container.appendChild(item));
         });
-        
+
         // Load more functionality
         document.getElementById('loadMoreBtn').addEventListener('click', function() {
             // Simulate loading more tours
             this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang tải...';
-            
+
             setTimeout(() => {
                 this.innerHTML = '<i class="fas fa-plus me-2"></i>Xem Thêm Tours';
                 // Here you would typically load more tours from an API
             }, 1500);
         });
-        
+
         // Book tour functionality
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('btn-book')) {
                 const tourCard = e.target.closest('.tour-card');
                 const tourName = tourCard.querySelector('h5').textContent;
-                
+
                 // Show booking notification
                 if (window.TravelDream && window.TravelDream.showNotification) {
                     window.TravelDream.showNotification(`Đang chuyển đến trang đặt tour: ${tourName}`, 'info');
                 }
-                
+
                 // In a real application, this would redirect to booking page
                 // window.location.href = `booking.html?tour=${encodeURIComponent(tourName)}`;
             }
         });
-        
+
         // Real-time search
         document.getElementById('searchInput').addEventListener('input', function() {
             clearTimeout(this.searchTimeout);
             this.searchTimeout = setTimeout(filterTours, 300);
         });
-        
+
         // Initialize filters
         document.addEventListener('DOMContentLoaded', function() {
             filterTours();
@@ -706,13 +534,13 @@
             font-size: 3rem;
             font-weight: 700;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             margin-bottom: 1rem;
         }
 
         .page-subtitle {
             font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
         }
 
@@ -720,7 +548,7 @@
             background: white;
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .tour-overlay {
@@ -843,21 +671,21 @@
             .page-title {
                 font-size: 2rem;
             }
-            
+
             .search-filter-bar {
                 padding: 1.5rem;
             }
-            
+
             .tour-meta {
                 flex-direction: column;
                 gap: 10px;
             }
-            
+
             .sort-options {
                 text-align: start !important;
                 margin-top: 1rem;
             }
-            
+
             .sort-options .form-select {
                 width: 100%;
             }
@@ -865,4 +693,5 @@
     </style>
 
 </body>
+
 </html>
