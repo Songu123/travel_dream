@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Tour - TravelDream</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-plane"></i>
+                TravelDream
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#destinations">Điểm Đến</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tours.html">Tours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Về Chúng Tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên Hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Header -->
+    <section class="booking-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb" data-aos="fade-up">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+                            <li class="breadcrumb-item"><a href="tours.html">Tours</a></li>
+                            <li class="breadcrumb-item active">Đặt Tour</li>
+                        </ol>
+                    </nav>
+                    <h1 class="booking-title" data-aos="fade-up" data-aos-delay="100">Đặt Tour</h1>
+                    <p class="booking-subtitle" data-aos="fade-up" data-aos-delay="200">
+                        Hoàn tất thông tin để xác nhận đặt tour của bạn
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Steps -->
+    <section class="booking-progress py-3 bg-light">
+        <div class="container">
+            <div class="progress-steps" data-aos="fade-up">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Thông tin tour</div>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Thông tin khách</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Thanh toán</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Hoàn tất</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Tour Information -->
+                    <div class="booking-section" data-aos="fade-up">
+                        <h3 class="section-title">
+                            <i class="fas fa-info-circle text-primary me-2"></i>
+                            Thông tin tour
+                        </h3>
+                        
+                        <div class="tour-booking-card">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                         alt="Tour Image" class="tour-booking-image">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="tour-booking-info">
+                                        <h4 id="tourName">Phú Quốc 3N2Đ - Đảo Ngọc Kiên Giang</h4>
+                                        <div class="tour-details">
+                                            <div class="detail-item">
+                                                <i class="fas fa-calendar-alt text-primary"></i>
+                                                <span>Ngày khởi hành: <strong id="departureDate">--</strong></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <i class="fas fa-clock text-primary"></i>
+                                                <span>Thời gian: <strong>3 ngày 2 đêm</strong></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <i class="fas fa-map-marker-alt text-primary"></i>
+                                                <span>Điểm đến: <strong>Phú Quốc, Kiên Giang</strong></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <i class="fas fa-users text-primary"></i>
+                                                <span>Số khách: <strong id="guestCount">--</strong></span>
+                                            </div>
+                                        </div>
+                                        <div class="tour-price-summary">
+                                            <span class="total-label">Tổng giá tour:</span>
+                                            <span class="total-amount" id="tourTotal">--</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Information -->
+                    <div class="booking-section" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="section-title">
+                            <i class="fas fa-user text-primary me-2"></i>
+                            Thông tin người đặt tour
+                        </h3>
+                        
+                        <form id="bookingForm" class="booking-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label required">Họ và tên</label>
+                                    <input type="text" class="form-control" id="customerName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label required">Số điện thoại</label>
+                                    <input type="tel" class="form-control" id="customerPhone" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label required">Email</label>
+                                    <input type="email" class="form-control" id="customerEmail" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Ngày sinh</label>
+                                    <input type="date" class="form-control" id="customerBirthday">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Địa chỉ</label>
+                                    <input type="text" class="form-control" id="customerAddress" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Ghi chú đặc biệt</label>
+                                    <textarea class="form-control" id="specialRequests" rows="3" placeholder="Yêu cầu đặc biệt về ăn uống, sức khỏe, v.v."></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Guest Details -->
+                    <div class="booking-section" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="section-title">
+                            <i class="fas fa-users text-primary me-2"></i>
+                            Thông tin khách tham gia
+                        </h3>
+                        
+                        <div class="guest-details-container">
+                            <!-- Adult guests -->
+                            <div class="guest-category" id="adultGuestsSection">
+                                <h5 class="guest-category-title">Người lớn</h5>
+                                <div id="adultGuestsList"></div>
+                            </div>
+                            
+                            <!-- Child guests -->
+                            <div class="guest-category" id="childGuestsSection" style="display: none;">
+                                <h5 class="guest-category-title">Trẻ em</h5>
+                                <div id="childGuestsList"></div>
+                            </div>
+                            
+                            <!-- Infant guests -->
+                            <div class="guest-category" id="infantGuestsSection" style="display: none;">
+                                <h5 class="guest-category-title">Em bé</h5>
+                                <div id="infantGuestsList"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="booking-section" data-aos="fade-up" data-aos-delay="300">
+                        <h3 class="section-title">
+                            <i class="fas fa-file-contract text-primary me-2"></i>
+                            Điều khoản và điều kiện
+                        </h3>
+                        
+                        <div class="terms-content">
+                            <div class="terms-item">
+                                <h6><i class="fas fa-calendar-times text-danger me-2"></i>Chính sách hủy tour</h6>
+                                <ul>
+                                    <li>Hủy trước 30 ngày: Không mất phí</li>
+                                    <li>Hủy trước 15-29 ngày: Mất 25% tổng giá tour</li>
+                                    <li>Hủy trước 7-14 ngày: Mất 50% tổng giá tour</li>
+                                    <li>Hủy trong vòng 7 ngày: Mất 100% tổng giá tour</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terms-item">
+                                <h6><i class="fas fa-exchange-alt text-warning me-2"></i>Chính sách đổi lịch</h6>
+                                <ul>
+                                    <li>Cho phép đổi lịch 1 lần miễn phí trước 15 ngày khởi hành</li>
+                                    <li>Đổi lịch trong vòng 15 ngày sẽ tính phí 500,000₫</li>
+                                    <li>Tour mới phải có giá trị tương đương hoặc cao hơn</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="terms-item">
+                                <h6><i class="fas fa-shield-alt text-success me-2"></i>Bảo hiểm và trách nhiệm</h6>
+                                <ul>
+                                    <li>Bảo hiểm du lịch cơ bản đã bao gồm trong giá tour</li>
+                                    <li>Khách hàng có thể mua thêm bảo hiểm nâng cao</li>
+                                    <li>Công ty không chịu tr책nhiệm cho tài sản cá nhân bị mất</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="terms-agreement">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                <label class="form-check-label" for="agreeTerms">
+                                    Tôi đã đọc và đồng ý với 
+                                    <a href="#" class="text-primary">điều khoản và điều kiện</a> 
+                                    của TravelDream
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="agreeMarketing">
+                                <label class="form-check-label" for="agreeMarketing">
+                                    Tôi đồng ý nhận thông tin khuyến mãi và tour mới từ TravelDream
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="booking-actions" data-aos="fade-up" data-aos-delay="400">
+                        <button type="button" class="btn btn-outline-secondary btn-lg me-3" onclick="goBack()">
+                            <i class="fas fa-arrow-left me-2"></i>Quay lại
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" onclick="proceedToPayment()">
+                            Tiếp tục thanh toán
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Booking Summary -->
+                <div class="col-lg-4">
+                    <div class="booking-summary-sidebar" data-aos="fade-left">
+                        <div class="summary-card">
+                            <h4 class="summary-title">
+                                <i class="fas fa-receipt text-primary me-2"></i>
+                                Tóm tắt đặt tour
+                            </h4>
+                            
+                            <div class="summary-tour-info">
+                                <h6 id="summaryTourName">Phú Quốc 3N2Đ - Đảo Ngọc Kiên Giang</h6>
+                                <div class="summary-details">
+                                    <div class="summary-item">
+                                        <span>Ngày khởi hành:</span>
+                                        <span id="summaryDate">--</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span>Thời gian:</span>
+                                        <span>3 ngày 2 đêm</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-guests">
+                                <h6>Thông tin khách</h6>
+                                <div id="summaryGuestDetails"></div>
+                            </div>
+                            
+                            <div class="summary-pricing">
+                                <div class="pricing-breakdown">
+                                    <div class="price-item" id="adultPriceRow">
+                                        <span>Người lớn (<span id="summaryAdults">0</span> × 2,500,000₫)</span>
+                                        <span id="summaryAdultTotal">0₫</span>
+                                    </div>
+                                    <div class="price-item" id="childPriceRow" style="display: none;">
+                                        <span>Trẻ em (<span id="summaryChildren">0</span> × 1,875,000₫)</span>
+                                        <span id="summaryChildTotal">0₫</span>
+                                    </div>
+                                    <div class="price-item" id="infantPriceRow" style="display: none;">
+                                        <span>Em bé (<span id="summaryInfants">0</span> × 500,000₫)</span>
+                                        <span id="summaryInfantTotal">0₫</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="price-total">
+                                    <div class="total-row">
+                                        <span>Tạm tính:</span>
+                                        <span id="summarySubtotal">0₫</span>
+                                    </div>
+                                    <div class="total-row">
+                                        <span>VAT (10%):</span>
+                                        <span id="summaryVat">0₫</span>
+                                    </div>
+                                    <div class="total-row final">
+                                        <span><strong>Tổng cộng:</strong></span>
+                                        <span><strong id="summaryGrandTotal">0₫</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-payment-methods">
+                                <h6>Phương thức thanh toán</h6>
+                                <div class="payment-options">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="bank" checked>
+                                        <label class="form-check-label" for="bankTransfer">
+                                            <i class="fas fa-university text-primary me-2"></i>
+                                            Chuyển khoản ngân hàng
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="card">
+                                        <label class="form-check-label" for="creditCard">
+                                            <i class="fas fa-credit-card text-primary me-2"></i>
+                                            Thẻ tín dụng/ghi nợ
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="momo" value="momo">
+                                        <label class="form-check-label" for="momo">
+                                            <i class="fas fa-mobile-alt text-primary me-2"></i>
+                                            Ví MoMo
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="office" value="office">
+                                        <label class="form-check-label" for="office">
+                                            <i class="fas fa-building text-primary me-2"></i>
+                                            Tại văn phòng
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Support Information -->
+                        <div class="support-card mt-4">
+                            <h5>Cần hỗ trợ?</h5>
+                            <div class="support-item">
+                                <i class="fas fa-phone text-primary"></i>
+                                <div>
+                                    <strong>Hotline đặt tour</strong>
+                                    <p>1900 2024</p>
+                                </div>
+                            </div>
+                            <div class="support-item">
+                                <i class="fas fa-envelope text-primary"></i>
+                                <div>
+                                    <strong>Email hỗ trợ</strong>
+                                    <p>booking@traveldream.vn</p>
+                                </div>
+                            </div>
+                            <div class="support-item">
+                                <i class="fas fa-comments text-primary"></i>
+                                <div>
+                                    <strong>Chat trực tuyến</strong>
+                                    <p>8:00 - 22:00 hằng ngày</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <h4><i class="fas fa-plane me-2"></i>TravelDream</h4>
+                        <p class="mb-4">
+                            Đồng hành cùng bạn trên mọi hành trình khám phá thế giới.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-uppercase mb-3">Liên Kết</h6>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Trang Chủ</a></li>
+                        <li><a href="tours.html">Tours</a></li>
+                        <li><a href="about.html">Về Chúng Tôi</a></li>
+                        <li><a href="contact.html">Liên Hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="text-uppercase mb-3">Dịch Vụ</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Tour Trong Nước</a></li>
+                        <li><a href="#">Tour Nước Ngoài</a></li>
+                        <li><a href="#">Visa - Passport</a></li>
+                        <li><a href="#">Vé Máy Bay</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h6 class="text-uppercase mb-3">Liên Hệ</h6>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt me-2"></i>123 Nguyễn Huệ, Quận 1, TP.HCM</p>
+                        <p><i class="fas fa-phone me-2"></i>1900 2024</p>
+                        <p><i class="fas fa-envelope me-2"></i>info@traveldream.vn</p>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 TravelDream. Tất cả quyền được bảo lưu.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="../js/script.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init();
+
+        // Booking data
+        let bookingData = {};
+        
+        // Price configuration
+        const prices = {
+            adult: 2500000,
+            child: 1875000,
+            infant: 500000
+        };
+
+        // Initialize booking page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBookingData();
+            setupFormValidation();
+            generateGuestForms();
+            updateSummary();
+        });
+
+        function loadBookingData() {
+            // Load data from sessionStorage (from tour detail page)
+            const storedData = sessionStorage.getItem('bookingData');
+            if (storedData) {
+                bookingData = JSON.parse(storedData);
+                
+                // Populate tour information
+                document.getElementById('tourName').textContent = bookingData.tourName;
+                document.getElementById('departureDate').textContent = formatDate(bookingData.departureDate);
+                document.getElementById('guestCount').textContent = `${bookingData.adults + bookingData.children + bookingData.infants} khách`;
+                document.getElementById('tourTotal').textContent = formatCurrency(bookingData.totalAmount);
+                
+                // Update summary
+                document.getElementById('summaryTourName').textContent = bookingData.tourName;
+                document.getElementById('summaryDate').textContent = formatDate(bookingData.departureDate);
+            } else {
+                // Default data if no stored data
+                bookingData = {
+                    tourName: 'Phú Quốc 3N2Đ - Đảo Ngọc Kiên Giang',
+                    departureDate: new Date().toISOString().split('T')[0],
+                    adults: 2,
+                    children: 0,
+                    infants: 0,
+                    totalAmount: 5000000
+                };
+                
+                document.getElementById('departureDate').textContent = formatDate(bookingData.departureDate);
+                document.getElementById('guestCount').textContent = `${bookingData.adults + bookingData.children + bookingData.infants} khách`;
+                document.getElementById('tourTotal').textContent = formatCurrency(bookingData.totalAmount);
+                document.getElementById('summaryDate').textContent = formatDate(bookingData.departureDate);
+            }
+        }
+
+        function generateGuestForms() {
+            // Generate forms for adult guests
+            const adultSection = document.getElementById('adultGuestsList');
+            for (let i = 0; i < bookingData.adults; i++) {
+                adultSection.appendChild(createGuestForm('adult', i + 1));
+            }
+            
+            // Generate forms for child guests
+            if (bookingData.children > 0) {
+                document.getElementById('childGuestsSection').style.display = 'block';
+                const childSection = document.getElementById('childGuestsList');
+                for (let i = 0; i < bookingData.children; i++) {
+                    childSection.appendChild(createGuestForm('child', i + 1));
+                }
+            }
+            
+            // Generate forms for infant guests
+            if (bookingData.infants > 0) {
+                document.getElementById('infantGuestsSection').style.display = 'block';
+                const infantSection = document.getElementById('infantGuestsList');
+                for (let i = 0; i < bookingData.infants; i++) {
+                    infantSection.appendChild(createGuestForm('infant', i + 1));
+                }
+            }
+        }
+
+        function createGuestForm(type, number) {
+            const guestForm = document.createElement('div');
+            guestForm.className = 'guest-form';
+            
+            const typeLabel = {
+                'adult': 'Người lớn',
+                'child': 'Trẻ em',
+                'infant': 'Em bé'
+            };
+            
+            guestForm.innerHTML = `
+                <h6 class="guest-form-title">${typeLabel[type]} ${number}</h6>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Họ và tên</label>
+                        <input type="text" class="form-control" name="${type}_name_${number}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Giới tính</label>
+                        <select class="form-select" name="${type}_gender_${number}">
+                            <option value="male">Nam</option>
+                            <option value="female">Nữ</option>
+                        </select>
+                    </div>
+                    ${type !== 'infant' ? `
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Ngày sinh</label>
+                        <input type="date" class="form-control" name="${type}_birthday_${number}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Số CMND/CCCD</label>
+                        <input type="text" class="form-control" name="${type}_id_${number}">
+                    </div>
+                    ` : `
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Ngày sinh</label>
+                        <input type="date" class="form-control" name="${type}_birthday_${number}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Ghi chú</label>
+                        <input type="text" class="form-control" name="${type}_note_${number}" placeholder="Thông tin đặc biệt">
+                    </div>
+                    `}
+                </div>
+            `;
+            
+            return guestForm;
+        }
+
+        function updateSummary() {
+            // Update guest numbers
+            document.getElementById('summaryAdults').textContent = bookingData.adults;
+            document.getElementById('summaryChildren').textContent = bookingData.children;
+            document.getElementById('summaryInfants').textContent = bookingData.infants;
+            
+            // Calculate prices
+            const adultTotal = bookingData.adults * prices.adult;
+            const childTotal = bookingData.children * prices.child;
+            const infantTotal = bookingData.infants * prices.infant;
+            const subtotal = adultTotal + childTotal + infantTotal;
+            const vat = subtotal * 0.1;
+            const grandTotal = subtotal + vat;
+            
+            // Update price display
+            document.getElementById('summaryAdultTotal').textContent = formatCurrency(adultTotal);
+            document.getElementById('summaryChildTotal').textContent = formatCurrency(childTotal);
+            document.getElementById('summaryInfantTotal').textContent = formatCurrency(infantTotal);
+            document.getElementById('summarySubtotal').textContent = formatCurrency(subtotal);
+            document.getElementById('summaryVat').textContent = formatCurrency(vat);
+            document.getElementById('summaryGrandTotal').textContent = formatCurrency(grandTotal);
+            
+            // Show/hide price rows based on guest counts
+            document.getElementById('childPriceRow').style.display = bookingData.children > 0 ? 'flex' : 'none';
+            document.getElementById('infantPriceRow').style.display = bookingData.infants > 0 ? 'flex' : 'none';
+            
+            // Update guest details
+            const guestDetails = [];
+            if (bookingData.adults > 0) guestDetails.push(`${bookingData.adults} người lớn`);
+            if (bookingData.children > 0) guestDetails.push(`${bookingData.children} trẻ em`);
+            if (bookingData.infants > 0) guestDetails.push(`${bookingData.infants} em bé`);
+            
+            document.getElementById('summaryGuestDetails').innerHTML = guestDetails.join('<br>');
+            
+            // Store updated total in bookingData
+            bookingData.totalAmount = grandTotal;
+        }
+
+        function setupFormValidation() {
+            const form = document.getElementById('bookingForm');
+            
+            // Real-time validation
+            const inputs = form.querySelectorAll('input[required]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('is-invalid')) {
+                        validateField(this);
+                    }
+                });
+            });
+        }
+
+        function validateField(field) {
+            const value = field.value.trim();
+            let isValid = true;
+            let errorMessage = '';
+            
+            // Required field validation
+            if (field.hasAttribute('required') && !value) {
+                isValid = false;
+                errorMessage = 'Trường này là bắt buộc';
+            }
+            
+            // Email validation
+            if (field.type === 'email' && value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    isValid = false;
+                    errorMessage = 'Email không hợp lệ';
+                }
+            }
+            
+            // Phone validation
+            if (field.type === 'tel' && value) {
+                const phoneRegex = /^[0-9]{10,11}$/;
+                if (!phoneRegex.test(value.replace(/\D/g, ''))) {
+                    isValid = false;
+                    errorMessage = 'Số điện thoại không hợp lệ';
+                }
+            }
+            
+            // Update field appearance
+            if (isValid) {
+                field.classList.remove('is-invalid');
+                field.classList.add('is-valid');
+                removeFieldError(field);
+            } else {
+                field.classList.remove('is-valid');
+                field.classList.add('is-invalid');
+                showFieldError(field, errorMessage);
+            }
+            
+            return isValid;
+        }
+
+        function showFieldError(field, message) {
+            removeFieldError(field);
+            
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'invalid-feedback';
+            errorDiv.textContent = message;
+            
+            field.parentNode.appendChild(errorDiv);
+        }
+
+        function removeFieldError(field) {
+            const existingError = field.parentNode.querySelector('.invalid-feedback');
+            if (existingError) {
+                existingError.remove();
+            }
+        }
+
+        function validateAllFields() {
+            const form = document.getElementById('bookingForm');
+            const requiredFields = form.querySelectorAll('input[required]');
+            let allValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!validateField(field)) {
+                    allValid = false;
+                }
+            });
+            
+            // Validate guest forms
+            const guestForms = document.querySelectorAll('.guest-form input[required]');
+            guestForms.forEach(field => {
+                if (!validateField(field)) {
+                    allValid = false;
+                }
+            });
+            
+            // Check terms agreement
+            const agreeTerms = document.getElementById('agreeTerms');
+            if (!agreeTerms.checked) {
+                agreeTerms.classList.add('is-invalid');
+                showFieldError(agreeTerms, 'Bạn phải đồng ý với điều khoản và điều kiện');
+                allValid = false;
+            } else {
+                agreeTerms.classList.remove('is-invalid');
+                removeFieldError(agreeTerms);
+            }
+            
+            return allValid;
+        }
+
+        function collectFormData() {
+            const formData = {
+                // Tour information
+                tour: bookingData,
+                
+                // Customer information
+                customer: {
+                    name: document.getElementById('customerName').value,
+                    phone: document.getElementById('customerPhone').value,
+                    email: document.getElementById('customerEmail').value,
+                    birthday: document.getElementById('customerBirthday').value,
+                    address: document.getElementById('customerAddress').value,
+                    specialRequests: document.getElementById('specialRequests').value
+                },
+                
+                // Guest information
+                guests: [],
+                
+                // Payment method
+                paymentMethod: document.querySelector('input[name="paymentMethod"]:checked').value,
+                
+                // Marketing consent
+                marketingConsent: document.getElementById('agreeMarketing').checked
+            };
+            
+            // Collect guest data
+            const guestForms = document.querySelectorAll('.guest-form');
+            guestForms.forEach(form => {
+                const inputs = form.querySelectorAll('input, select');
+                const guestData = {};
+                
+                inputs.forEach(input => {
+                    if (input.name) {
+                        guestData[input.name] = input.value;
+                    }
+                });
+                
+                formData.guests.push(guestData);
+            });
+            
+            return formData;
+        }
+
+        function proceedToPayment() {
+            if (validateAllFields()) {
+                const formData = collectFormData();
+                
+                // Store booking data
+                sessionStorage.setItem('completeBookingData', JSON.stringify(formData));
+                
+                // Show loading state
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang xử lý...';
+                button.disabled = true;
+                
+                // Simulate processing
+                setTimeout(() => {
+                    // In a real application, this would submit to backend
+                    showBookingSuccess();
+                }, 2000);
+            } else {
+                // Scroll to first error
+                const firstError = document.querySelector('.is-invalid');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstError.focus();
+                }
+                
+                showNotification('Vui lòng kiểm tra và hoàn thiện thông tin', 'error');
+            }
+        }
+
+        function showBookingSuccess() {
+            // Create success modal
+            const modal = document.createElement('div');
+            modal.className = 'modal fade';
+            modal.innerHTML = `
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body text-center p-5">
+                            <div class="success-icon mb-4">
+                                <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                            </div>
+                            <h3 class="text-success mb-3">Đặt tour thành công!</h3>
+                            <p class="lead mb-4">
+                                Cảm ơn bạn đã đặt tour với TravelDream. Chúng tôi sẽ liên hệ với bạn trong vòng 24h để xác nhận thông tin.
+                            </p>
+                            <div class="booking-reference mb-4">
+                                <strong>Mã đặt tour: <span class="text-primary">#TD${Date.now()}</span></strong>
+                            </div>
+                            <div class="d-flex justify-content-center gap-3">
+                                <button type="button" class="btn btn-primary" onclick="window.location.href='../index.html'">
+                                    Về trang chủ
+                                </button>
+                                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='tours.html'">
+                                    Xem thêm tour
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            const bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.show();
+            
+            // Clean up sessionStorage
+            sessionStorage.removeItem('bookingData');
+            sessionStorage.removeItem('completeBookingData');
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('vi-VN', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+                minimumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function showNotification(message, type = 'info') {
+            // Simple notification system
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show position-fixed`;
+            notification.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 300px;';
+            notification.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+    </script>
+
+    <!-- Additional CSS for Booking Page -->
+    <style>
+        .booking-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 120px 0 60px;
+            margin-bottom: 0;
+        }
+
+        .booking-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .booking-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: #dee2e6;
+            z-index: 1;
+        }
+
+        .step.active:not(:last-child)::after {
+            background: var(--primary-color);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dee2e6;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step.active .step-number {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .step.active .step-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .booking-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .tour-booking-card {
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            background: #f8f9fa;
+        }
+
+        .tour-booking-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .tour-booking-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tour-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-item i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .tour-price-summary {
+            text-align: right;
+            padding-top: 1rem;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .total-label {
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+
+        .total-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-left: 1rem;
+        }
+
+        .form-label.required::after {
+            content: ' *';
+            color: #dc3545;
+        }
+
+        .guest-details-container {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .guest-category {
+            margin-bottom: 2rem;
+        }
+
+        .guest-category-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .guest-form {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e9ecef;
+        }
+
+        .guest-form-title {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .terms-content {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .terms-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .terms-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-item h6 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .terms-item ul {
+            margin-bottom: 0;
+        }
+
+        .terms-item li {
+            margin-bottom: 0.25rem;
+        }
+
+        .terms-agreement {
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .booking-actions {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .booking-summary-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .summary-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .summary-tour-info h6 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .summary-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-guests h6 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .summary-pricing {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .pricing-breakdown {
+            margin-bottom: 1rem;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-total {
+            border-top: 1px solid #dee2e6;
+            padding-top: 1rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-row.final {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-top: 1px solid #dee2e6;
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .summary-payment-methods h6 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .payment-options .form-check {
+            margin-bottom: 0.75rem;
+        }
+
+        .payment-options .form-check-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .support-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .support-card h5 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .support-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .support-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .support-item i {
+            margin-right: 15px;
+            margin-top: 5px;
+            width: 20px;
+        }
+
+        .support-item strong {
+            display: block;
+            color: var(--primary-color);
+        }
+
+        .support-item p {
+            margin: 0;
+            color: #6c757d;
+        }
+
+        @media (max-width: 768px) {
+            .booking-title {
+                font-size: 2rem;
+            }
+            
+            .progress-steps {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .step {
+                flex: none;
+                width: calc(50% - 0.5rem);
+            }
+            
+            .step:nth-child(2n)::after,
+            .step:last-child::after {
+                display: none;
+            }
+            
+            .booking-section {
+                padding: 1.5rem;
+            }
+            
+            .tour-booking-card {
+                padding: 1rem;
+            }
+            
+            .tour-booking-image {
+                height: 150px;
+                margin-bottom: 1rem;
+            }
+            
+            .booking-summary-sidebar {
+                position: static;
+                margin-top: 2rem;
+            }
+            
+            .booking-actions {
+                text-align: left;
+            }
+            
+            .booking-actions .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+
+</body>
+</html>
